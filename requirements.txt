@@ -4,3 +4,4 @@ xlrd
 matplotlib
 ipywidgets
 ipyvuetify
+voila
