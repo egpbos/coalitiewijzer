@@ -1,7 +1,3 @@
-notebook
-pandas
-xlrd
-matplotlib
 ipywidgets
 ipyvuetify
 voila
