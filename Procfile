@@ -1,1 +1,1 @@
-web: voila —-port=$PORT —-no-browser deploy.ipynb
+web: voila --port=$PORT --no-browser --enable_nbextensions=True deploy.ipynb
