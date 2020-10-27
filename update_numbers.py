@@ -11,7 +11,7 @@ high = numbers.ZetelsHoog.values
 
 Peiling = namedtuple('Peiling', ['verwacht', 'laag', 'hoog'])
 
-peilingen = {partij: Peiling(*x) for partij, *x in zip(partijen, expected, low, high)}
+peilingen = {partij: Peiling(int(e), int(l), int(h)) for partij, e, l, h in zip(partijen, expected, low, high)}
 
 print(peilingen)
 
