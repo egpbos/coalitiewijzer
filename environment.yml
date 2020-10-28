@@ -1,0 +1,11 @@
+name: run-notebooks
+channels:
+  - conda-forge
+dependencies:
+  - notebook
+  - pandas
+  - matplotlib
+  - xlrd
+  - ipywidgets
+  - ipyvuetify
+
