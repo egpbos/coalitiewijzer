@@ -2,7 +2,10 @@ import pandas as pd
 from collections import namedtuple
 import pickle
 
-numbers = pd.read_excel('Cijfers_Peilingwijzer.xlsx', header=0, index_col=0)
+try:
+    numbers = pd.read_excel('Cijfers_Peilingwijzer.xlsx', header=0, index_col=0)
+except AttributeError:
+    numbers = pd.read_excel('Cijfers_Peilingwijzer.xlsx', header=0, index_col=0, engine='openpyxl')
 
 partijen = numbers.index.values
 expected = numbers.Zetels.values
