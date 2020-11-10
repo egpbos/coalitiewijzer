@@ -1,3 +1,4 @@
 *.xlsx
 *.swp
 .ipynb_checkpoints/
+.venv/
