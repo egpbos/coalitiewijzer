@@ -8,6 +8,6 @@ Try out the notebooks on Binder: [![Binder](https://mybinder.org/badge_logo.svg)
 
 # Changelog
 
-- 2020-11-10: Improve confidence interval estimates
+- 2020-11-10: Improve confidence interval estimates and add share link
 - 2020-11-01: First "release" on Heroku
 
