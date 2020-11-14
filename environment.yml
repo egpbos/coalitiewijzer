@@ -9,4 +9,5 @@ dependencies:
   - ipywidgets
   - ipyvuetify
   - requests
+  - lxml
 
