@@ -2,3 +2,5 @@
 *.swp
 .ipynb_checkpoints/
 .venv/
+candidates_*.html
+candidates_*.pdf
