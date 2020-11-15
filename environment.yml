@@ -10,4 +10,5 @@ dependencies:
   - ipyvuetify
   - requests
   - lxml
+  - pdfx
 
