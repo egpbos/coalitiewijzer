@@ -8,6 +8,7 @@ Try out the notebooks on Binder: [![Binder](https://mybinder.org/badge_logo.svg)
 
 # Changelog
 
+- 2021-01-30: Directly use single-party estimates from original Peilingwijzer as workaround for small errors caused by my estimate for the statistical model.
 - 2020-11-28: Nicer share URL
 - 2020-11-11: Switch to ipyvuetify buttons
 - 2020-11-10: Improve confidence interval estimates and add share link
