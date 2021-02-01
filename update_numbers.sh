@@ -1,8 +1,6 @@
-curl -s https://d1bjgq97if6urz.cloudfront.net/Public/Peilingwijzer/Last/Cijfers_Peilingwijzer.xlsx -o Cijfers_Peilingwijzer.xlsx
+#!/usr/bin/env sh
+set -e
 python update_numbers.py
 python check_numbers.py
-git add peilingen.pkl table.pkl
+git add peilingen.pkl table.pkl last_updated.json
 git commit -m "updated numbers from Peilingwijzer"
-git push
-git push heroku main
-

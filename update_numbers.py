@@ -4,14 +4,25 @@ import pickle
 import statistics
 import math
 import itertools
+import json
 from tqdm import tqdm
 
 # polls
-
+numbers_url = "https://d1bjgq97if6urz.cloudfront.net/Public/Peilingwijzer/Last/Cijfers_Peilingwijzer.xlsx"
+# numbers_url = "Cijfers_Peilingwijzer.xlsx"
 try:
-    numbers = pd.read_excel('Cijfers_Peilingwijzer.xlsx', header=0, index_col=0)
+    numbers = pd.read_excel(numbers_url, header=0, index_col=0)
 except AttributeError:
-    numbers = pd.read_excel('Cijfers_Peilingwijzer.xlsx', header=0, index_col=0, engine='openpyxl')
+    numbers = pd.read_excel(numbers_url, header=0, index_col=0, engine='openpyxl')
+
+with open('last_updated.json', 'r') as fh:
+    last_update = json.load(fh)
+
+# check if Peilingwijzer numbers actually changed since last update
+numbers_were_changed = numbers.Datum.max() > pd.Timestamp(last_update["data"])
+if not numbers_were_changed:
+    raise SystemExit("No updates on the Peilingwijzer numbers, done!")
+
 
 partijen = numbers.index.values
 expected = numbers.Zetels.values
@@ -64,5 +75,20 @@ table = {}
 for key in tqdm(powerset(sims.keys()), total=2**len(sims.keys())):
     table[key] = to_Peiling_from_simulations(sum_coalition(sims_df, *key))
 
+# make sure the simulations were also updated and so they should
+# not contain the same answers as the previous table:
+with open('table.pkl', 'rb') as fh:
+    old_table = pickle.load(fh)
+
+if table == old_table:
+    raise SystemExit("The new table is exactly the same as the old one, so probably it wasn't updated yet, try again later!")
+
+# everything fine, save stuff to files
 with open('table.pkl', 'wb') as fh:
     pickle.dump(table, fh)
+
+last_update["data"] = numbers.Datum.max().date().__str__()
+last_update["page"] = pd.Timestamp.now('Europe/Amsterdam').date().__str__()
+print(last_update)
+with open('last_updated.json', 'w') as outfile:
+    json.dump(last_update, outfile)
