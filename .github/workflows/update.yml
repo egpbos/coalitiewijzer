@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Update Peilingwijzer data
+
+# Controls when the action will run. 
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '* */18 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        # below options prescribed by example here: https://github.com/marketplace/actions/github-push#example-workflow-file
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+      - name: run update script
+        run: ./update_numbers.sh
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
