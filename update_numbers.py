@@ -8,14 +8,15 @@ import json
 from tqdm import tqdm
 
 # polls
-# numbers_url = "https://d1bjgq97if6urz.cloudfront.net/Public/Peilingwijzer/Last/Cijfers_Peilingwijzer.xlsx"
-numbers_url = "Cijfers_Peilingwijzer.xlsx"
+numbers_url = "https://d1bjgq97if6urz.cloudfront.net/Public/Peilingwijzer/Last/Cijfers_Peilingwijzer.xlsx"
+# numbers_url = "Cijfers_Peilingwijzer.xlsx"
 try:
     numbers = pd.read_excel(numbers_url, header=0, index_col=0)
 except AttributeError:
     numbers = pd.read_excel(numbers_url, header=0, index_col=0, engine='openpyxl')
 
-print(numbers)
+if numbers.empty():
+    raise SystemExit("Loading Excel file gives empty dataframe, for some reason.")
 
 with open('last_updated.json', 'r') as fh:
     last_update = json.load(fh)
