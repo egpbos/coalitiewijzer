@@ -1,5 +1,10 @@
-pandas
-xlrd
-openpyxl
-tqdm
-
+pandas==1.1.3
+xlrd==1.2.0
+openpyxl==3.0.5
+tqdm==4.51.0
+pytz==2020.1
+numpy==1.19.2
+six==1.15.0
+et-xmlfile==1.0.1
+jdcal==1.4.1
+python-dateutil==2.8.1
