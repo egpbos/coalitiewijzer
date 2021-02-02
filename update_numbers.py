@@ -15,6 +15,8 @@ try:
 except AttributeError:
     numbers = pd.read_excel(numbers_url, header=0, index_col=0, engine='openpyxl')
 
+print(numbers)
+
 with open('last_updated.json', 'r') as fh:
     last_update = json.load(fh)
 
