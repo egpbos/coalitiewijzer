@@ -1,19 +1,17 @@
-import pandas as pd
 from collections import namedtuple
 import pickle
 import statistics
 import math
 import itertools
 import json
+
 from tqdm import tqdm
+import pandas as pd
 
 # polls
 numbers_url = "https://d1bjgq97if6urz.cloudfront.net/Public/Peilingwijzer/Last/Cijfers_Peilingwijzer.xlsx"
 # numbers_url = "Cijfers_Peilingwijzer.xlsx"
-try:
-    numbers = pd.read_excel(numbers_url, header=0, index_col=0)
-except AttributeError:
-    numbers = pd.read_excel(numbers_url, header=0, index_col=0, engine='openpyxl')
+numbers = pd.read_excel(numbers_url, header=0, index_col=0)
 
 if numbers.empty:
     raise SystemExit("Loading Excel file gives empty dataframe, for some reason.")
